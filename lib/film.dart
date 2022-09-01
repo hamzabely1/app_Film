@@ -14,7 +14,7 @@ class Film {
   factory Film.fromJson(Map<String, dynamic> json) {
     return Film(
       id: json['id'] as int,
-      name: json['name'] as String,
+      name: json['name'] as String ,
       logoPath: json['logoPath'] as String,
       originCountry: json['originCountry'] as String,
     );
