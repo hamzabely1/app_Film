@@ -7,7 +7,7 @@ import 'film.dart';
 //Convertissez le corps de la réponse en une carte JSON avec le package dart:convert.
 Future<List<Film>> fetch_all_Film() async {
   String api =
-      'https://api.themoviedb.org/3/movie/popular?api_key=26bd7bf489b6d251603a35783da5959d';
+      'https://api.themoviedb.org/3/movie/popular?api_key=26bd7bf489b6d251603a35783da5959d&language=fr-FR';
   final response = await http.get(Uri.parse(api));
 
 //convertissez la carte JSON un Film à l'aide de la méthode de fabrique fromJson(
