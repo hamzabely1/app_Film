@@ -42,33 +42,35 @@ class _HomePageState extends State<HomePage> {
         itemCount: _film.length,
         itemBuilder: (context, index) {
           final film = _film[index];
-          return ListTile(
-            title: Row(
-              children: [
-                SizedBox(
-                  width: 120,
-                  child: ClipRRect(
-                      child: Image.network(
-                          "https://image.tmdb.org/t/p/original/" +
-                              _film[index].image),
-                      borderRadius: BorderRadius.circular(5)),
+          return GestureDetector(
+              onTap: ()  {
+                          var i = _film[index].id;
+
+              Navigator.of(context).pushNamed(Film_detail.routeName,
+                    arguments: i);
+              },
+              child: Card(
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 120,
+                      child: ClipRRect(
+                          child: Image.network("https://image.tmdb.org/t/p/original/"+_film[index].image),
+                          borderRadius: BorderRadius.circular(5)),
+                    ),
+                    Flexible(
+                        child: Padding(
+                            padding: const EdgeInsets.all(9.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(_film[index].titre),
+                                Text(_film[index].date)
+                              ],
+                            ))),
+                  ],
                 ),
-                Flexible(
-                    child: Padding(
-                        padding: const EdgeInsets.all(9.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(_film[index].title),
-                            Text(_film[index].date)
-                          ],
-                        ))),
-              ],
-            ),
-            onTap: () {
-              Navigator.push(context, Film_detail());
-            },
-          );
+              ));
         },
       ),
     );

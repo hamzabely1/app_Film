@@ -14,11 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Netflix',
       home: HomePage(),
-      routes:{
-     Film_detail.routeName :(context) => Film_detail(),
-      }
+     routes: {
+Film_detail.routeName:(context)=>Film_detail()
+     },
     );
   }
 }
-
-

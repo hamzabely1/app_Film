@@ -7,23 +7,22 @@ import 'package:flutter/src/widgets/ticker_provider.dart';
 
 class Film {
   final int id;
-  final String title;
+  final String titre;
   final String image;
   final String description;
   final String date;
   const Film({
     required this.id,
-    required this.title,
+    required this.titre,
     required this.image,
     required this.description,
-    // ignore: non_constant_identifier_names
     required this.date,
   });
 
   factory Film.fromJson(Map<String, dynamic> json) {
     return Film(
       id: json['id'] as int,
-      title: json['title'] as String,
+      titre: json['title'] as String,
       image: json["poster_path"] as String,
       description: json["overview"] as String,
       date: json["release_date"] as String,

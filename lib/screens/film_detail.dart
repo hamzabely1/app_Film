@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable
-
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter_application_1/model/film.dart';
@@ -7,32 +5,24 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 class Film_detail extends StatelessWidget {
-   Film_detail({Key? key}) : super(key: key);
+  Film_detail({Key? key}) : super(key: key);
   static const routeName = "Film_detail";
   var _id;
-  var _title;
-  var _image;
-  var _description;
-  var _date_de_sorti;
-  var _langue_original;
-  var _vote;
-
+  var _titre;
 
   Future fetchDetail(String id) async {
-    final response = await http.get(
-        Uri.parse('https://api.themoviedb.org/3/movie/popular?api_key=$id'));
+    final response = await http.get(Uri.parse(
+        'https://api.themoviedb.org/3/movie/$id?api_key=26bd7bf489b6d251603a35783da5959d'));
 
     if (response.statusCode == 200) {
       final result = jsonDecode(response.body);
-      final list = result['results'];
+      final list = result;
+      _id = list["id"] as int;
+      _titre = list["original_title"] as String;
 
-      _id = list["id"];
-      _title = list["title"];
-      _image = list["poster_path"];
-      _date_de_sorti = list["release_date"];
-      _langue_original = list["original_language"];
-      _vote = list["vote_average"];
-      _description = list["overview"];
+      print(_titre);
+    } else {
+      print('oui');
     }
   }
 
@@ -42,13 +32,16 @@ class Film_detail extends StatelessWidget {
     return FutureBuilder(
       future: fetchDetail(filmId),
       builder: (context, data) {
+        while (_id == null) {
+          return const Center(
+            child: CircularProgressIndicator.adaptive(),
+          );
+        }
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.red,
-       
-           
           ),
-          body: Center(child: Text(_image)),
+          body: Center(child: Text(_titre)),
         );
       },
     );
