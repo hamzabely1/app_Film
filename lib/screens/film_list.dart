@@ -1,11 +1,6 @@
-import 'dart:convert';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_application_1/screens/film_detail.dart';
-import 'package:http/http.dart' as http;
-
 import '../model/fetch_film.dart';
 import '../model/film.dart';
 
@@ -38,7 +33,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red[900],
-        title: Text('Netflix'),
+        title: Center(child: Text("Netflix"),),
       ),
       body: ListView.builder(
         itemCount: _film.length,
@@ -51,52 +46,45 @@ class _HomePageState extends State<HomePage> {
                     .pushNamed(Film_detail.routeName, arguments: i);
               },
               child: Card(
-                margin: EdgeInsets.all(9.0),
+                  margin: EdgeInsets.all(9.0),
                   child: Row(children: [
-                SizedBox(
-                  width: 100,
-                  child: ClipRRect(
-                      child: Image.network(
-                          "https://image.tmdb.org/t/p/original/" +
-                              _film[index].image),
-                      borderRadius: BorderRadius.circular(5)),
-                ),
-                Flexible(
-                    child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                            margin: const EdgeInsets.fromLTRB(1, 5, 5, 5),
-                            child: Text(_film[index].titre,
+                    SizedBox(
+                      width: 100,
+                      child: ClipRRect(
+                          child: Image.network(
+                              "https://image.tmdb.org/t/p/original/" +
+                                  _film[index].image),
+                          borderRadius: BorderRadius.circular(5)),
+                    ),
+                    Flexible(
+                        child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                                margin: const EdgeInsets.fromLTRB(1, 5, 5, 5),
+                                child: Text(_film[index].titre,
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 0.15,
+                                    ))),
+                            Text(_film[index].date,
                                 style: const TextStyle(
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 0.15,
-                                ))),
-                        Text(_film[index].date,
-                        style: const TextStyle(
-fontSize: 13.0,
-color: Colors.grey
-
-                        )
-                        ),
-                        
-                        
-                        Container(
-                          width: 260,
-                          height: 34,
-                            margin: const EdgeInsets.fromLTRB(1,25, 5, 5),
-
-                            child: Text(_film[index].description,
-                                style: const TextStyle(
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.15,
-                                ))),
-                      ]),
-                ))
-              ])));
+                                    fontSize: 13.0, color: Colors.grey)),
+                            Container(
+                                width: 260,
+                                height: 34,
+                                margin: const EdgeInsets.fromLTRB(1, 25, 5, 5),
+                                child: Text(_film[index].description,
+                                    style: const TextStyle(
+                                      fontSize: 14.0,
+                                      letterSpacing: 0.15,
+                                    ))),
+                          ]),
+                    ))
+                  ])));
         },
       ),
     );

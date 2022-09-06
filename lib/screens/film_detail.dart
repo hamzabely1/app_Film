@@ -16,6 +16,10 @@ class Film_detail extends StatelessWidget {
   var _duree;
   var _description;
 
+  //récupérer le contenu de l'API  à l'aide de la méthode http.get().
+  //avec l'identifiant que j'obtiens de la page film_list grace a onTap.
+
+
   Future fetchDetail(String id) async {
     final response = await http.get(Uri.parse(
         'https://api.themoviedb.org/3/movie/$id?api_key=26bd7bf489b6d251603a35783da5959d&language=fr-FR'));
