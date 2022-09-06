@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Netflix',
+      title: 'Nextflix',
       home: HomePage(),
      routes: {
 Film_detail.routeName:(context)=>Film_detail()
